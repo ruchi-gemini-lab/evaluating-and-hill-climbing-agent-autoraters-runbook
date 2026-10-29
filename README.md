@@ -15,6 +15,7 @@ Complete architectural documentation, High-Level Design (HLD), Low-Level Design 
 | :--- | :--- |
 | **[`ARCHITECTURE_AND_DESIGN.md`](./ARCHITECTURE_AND_DESIGN.md)** | **High-Level Design (HLD) & Low-Level Design (LLD)**: System context, multi-pass LLM-as-a-Judge architecture, data schemas (`EvalSet`, GEAP JSON), statistical reliability mathematics (Krippendorff's $\alpha$, pairwise agreement, homogeneity traps), and skill engineering architecture. |
 | **[`RUNBOOK.md`](./RUNBOOK.md)** | **Step-by-Step Operational Runbook**: Exact CLI commands, verified terminal outputs, full 19-criterion statistical consistency table, single-criterion matrices, baseline vs. hillclimb judge rationales, and exact `SKILL.md` updates for Tasks 1–6. |
+| **[`TASK5_CRITERIA_SELECTION_METHODOLOGY.md`](./TASK5_CRITERIA_SELECTION_METHODOLOGY.md)** | **Task 5 Statistical Calculation & Criteria Selection Deep-Dive**: Step-by-step mathematical formulas (`metrics_calc.py`), 5-stage elimination funnel ($4 + 2 + 8 + 2 + 3 = 19$), worked pairwise/$\alpha$ calculations, and $N=32 \times k=15$ matrix case studies explaining how `monthly-tax-holding`, `flood-zone-flagging`, and `environmental-esa` were selected. |
 | **[`AGY_SESSION_HISTORY.md`](./AGY_SESSION_HISTORY.md)** | **Antigravity (AGY) & Cloud Shell Session Log**: Chronological execution timeline, tool calls, `uv` Python 3.13.16 optimization, and troubleshooting log. |
 
 ---
@@ -94,10 +95,11 @@ After diagnosing the baseline judge rationales via `explain_criteria_results.py`
 
 ```text
 autoraters/
-├── README.md                           # Project overview, architecture & results summary
-├── ARCHITECTURE_AND_DESIGN.md          # Deep-dive HLD, LLD, schemas & statistical formulas
-├── RUNBOOK.md                          # Step-by-step operational runbook (Tasks 1-6)
-├── AGY_SESSION_HISTORY.md              # Chronological AGY & Cloud Shell execution log
+├── README.md                                   # Project overview, architecture & results summary
+├── ARCHITECTURE_AND_DESIGN.md                  # Deep-dive HLD, LLD, schemas & statistical formulas
+├── RUNBOOK.md                                  # Step-by-step operational runbook (Tasks 1-6)
+├── TASK5_CRITERIA_SELECTION_METHODOLOGY.md     # Detailed statistical guide for Task 5 criteria selection
+├── AGY_SESSION_HISTORY.md                      # Chronological AGY & Cloud Shell execution log
 ├── best_criteria_submission.txt        # Task 5 submission file
 ├── requirements.txt                    # Python 3.13 dependencies
 ├── .env.example                        # Example environment configuration

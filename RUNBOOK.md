@@ -206,6 +206,8 @@ python3 -m eval_harness.run_geap_eval \
 
 ## Task 5: Analyze Autorater Self-Consistency and Select Reliable Criteria
 
+> **Deep-Dive Statistical Guide:** See **[`TASK5_CRITERIA_SELECTION_METHODOLOGY.md`](./TASK5_CRITERIA_SELECTION_METHODOLOGY.md)** for the full mathematical derivations (`eval_harness/metrics_calc.py`), the 5-stage elimination funnel ($4\text{ homogeneity traps} + 2\text{ near-homogeneity traps} + 8\text{ noisy/low-discrimination criteria} + 2\text{ pre-selected Task 6 targets} + 3\text{ selected winners} = 19$), worked numerical examples, and verbatim $N=32 \times k=15$ matrices.
+
 In Task 5, you analyze the 15-pass evaluation dataset (`runs/geap_calls_and_responses_for_analysis.json`, containing $N = 32$ property reports $\times$ $k = 15$ passes across $19$ candidate criteria = $9,120$ total ratings) to identify the **3 additional reliable criteria** (alongside `cost-per-acre` and `neighboring-flood-risk`, which were pre-selected for Task 6).
 
 ### Step 5.1: Run `all_criteria_analysis.py` on the 15-Pass Dataset
@@ -213,7 +215,8 @@ In Task 5, you analyze the 15-pass evaluation dataset (`runs/geap_calls_and_resp
 ```bash
 cd ~/autoraters
 source .venv/bin/activate
-python3 -m eval_harness.all_criteria_analysis runs/geap_calls_and_responses_for_analysis.json
+python3 -m eval_harness.all_criteria_analysis \
+  --run_geap_eval_out runs/geap_calls_and_responses_for_analysis.json
 ```
 
 **Verified Output (All 19 Candidate Criteria Across $N=32$ Reports, $k=15$ Passes):**
@@ -243,10 +246,10 @@ python3 -m eval_harness.all_criteria_analysis runs/geap_calls_and_responses_for_
 ### Step 5.2: Inspect Individual Criteria Matrices (`single_criterion_analysis.py`)
 
 ```bash
-python3 -m eval_harness.single_criterion_analysis runs/geap_calls_and_responses_for_analysis.json monthly-tax-holding
-python3 -m eval_harness.single_criterion_analysis runs/geap_calls_and_responses_for_analysis.json flood-zone-flagging
-python3 -m eval_harness.single_criterion_analysis runs/geap_calls_and_responses_for_analysis.json environmental-esa
-python3 -m eval_harness.single_criterion_analysis runs/geap_calls_and_responses_for_analysis.json risk-assessment
+python3 -m eval_harness.single_criterion_analysis --run_geap_eval_out runs/geap_calls_and_responses_for_analysis.json --criterion monthly-tax-holding
+python3 -m eval_harness.single_criterion_analysis --run_geap_eval_out runs/geap_calls_and_responses_for_analysis.json --criterion flood-zone-flagging
+python3 -m eval_harness.single_criterion_analysis --run_geap_eval_out runs/geap_calls_and_responses_for_analysis.json --criterion environmental-esa
+python3 -m eval_harness.single_criterion_analysis --run_geap_eval_out runs/geap_calls_and_responses_for_analysis.json --criterion risk-assessment
 ```
 
 **Why `monthly-tax-holding`, `flood-zone-flagging`, and `environmental-esa` Are Selected:**
